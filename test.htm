@@ -1,0 +1,67 @@
+
+
+<script>
+var TF_PopUrl = "http://www.baidu.com";
+//如果需要自定义高度，宽度
+TF_PopWidth=800;
+TF_PopHeight=600;
+document.write("<SCRIPT LANGUAGE=JavaScript1.1 SRC='spop.js'><"+"/SCRIPT>"); 
+</script>
+
+
+
+
+
+<script charset="utf-8" type="text/javascript" sr|c="http://cd.lm.17k.com/s.js?m=1055&p=11&s=12&w=468&h=60">
+
+function addMethod(object, name, fn){
+  // Save a reference to the old method
+  var old = object[ name ];
+
+  // Overwrite the method with our new one
+  object[ name ] = function(){
+    // Check the number of incoming arguments,
+    // compared to our overloaded function
+    if ( fn.length == arguments.length )
+      // If there was a match, run the function
+      return fn.apply( this, arguments );
+
+    // Otherwise, fallback to the old method
+    else if ( typeof old === "function" )
+      return old.apply( this, arguments );
+  };
+}
+
+function Ninjas(){
+  var ninjas = [ "Dean Edwards", "Sam Stephenson", "Alex Russell" ];
+  addMethod(this, "find", function(){
+    return ninjas;
+  });
+  addMethod(this, "find", function(name){
+    var ret = [];
+    for ( var i = 0; i < ninjas.length; i++ )
+      if ( ninjas[i].indexOf(name) == 0 )
+        ret.push( ninjas[i] );
+    return ret;
+  });
+  addMethod(this, "find", function(first, last){
+    var ret = [];
+    for ( var i = 0; i < ninjas.length; i++ )
+      if ( ninjas[i] == (first + " " + last) )
+        ret.push( ninjas[i] );
+    return ret;
+  });
+}
+
+var ninjas = new Ninjas();
+//debugger;
+var console;if(!console){console={};console.log=function(){}}
+console.log( ninjas.find().length == 3, "Finds all ninjas" );
+console.log( ninjas.find("Sam").length == 1, "Finds ninjas by first name" );
+console.log( ninjas.find("Dean", "Edwards").length == 1, "Finds ninjas by first and last name" );
+console.log( ninjas.find("Alex", "X", "Russell") == null, "Does nothing" );
+</script>
+
+<!--OBJECT id="adqoo" codeBase=http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0 height=214 width=188 align=middle classid=clsid:d27cdb6e-ae6d-11cf-96b8-444553540000><PARAM NAME="Src" VALUE="http://www.adqoo.com/flash/adqoo.swf"><PARAM NAME="AllowScriptAccess" VALUE="always"><param name="FlashVars" value="id=130"/><embed src="http://www.adqoo.com/flash/adqoo.swf" quality="high" width="188" height="214" align="middle" allowScriptAccess="always" flashVars="id=130" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" /></OBJECT>
+-->
+

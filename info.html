@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网盟HTTP监控</title>
+<link href="zinfo.css" rel="stylesheet" type="text/css" />
+<style>
+	#left, #right {background-color:blue;}
+	#left {width:100px;float:left}
+	#right {background-color:red;}
+</style>
+<script type="text/javascript" src="jquery-1.3.1.js"></script>
+<script type="text/javascript" src="zinfo.js"></script>
+<script type="text/javascript">
+
+	$(function(){
+		monitor1 = new Apollo.monitor.Monitor('网盟Apache服务器监控', '监控STAT服务器组(w1,w2,s1)', 'apache');
+		monitor1.init();
+		monitor1.addUnit(new Apollo.monitor.Unit('w1','http://122.11.53.215/server-status'));
+		monitor1.addUnit(new Apollo.monitor.Unit('w2','http://122.11.53.216/server-status'));
+		//monitor1.addUnit(new Apollo.monitor.Unit('s1','http://60.28.183.8/server-status'));
+/*
+		monitor2 = new Apollo.monitor.Monitor('网盟Apache服务器监控', '监控CD服务器组(w3,w4)', 'nginx');
+		monitor2.init();
+		monitor2.addUnit(new Apollo.monitor.Unit('w3','http://60.28.183.13/NginxStatus/'));
+		monitor2.addUnit(new Apollo.monitor.Unit('w4','http://60.28.183.14/NginxStatus/'));
+		//monitor2.addUnit(new Apollo.monitor.Unit('db','http://60.28.183.9/NginxStatus/'));
+
+		monitor3 = new Apollo.monitor.Monitor('网盟Nginx服务器监控', '监控静态服务器组(db,i1,i2)', 'nginx');
+		monitor3.init();
+		monitor3.addUnit(new Apollo.monitor.Unit('i1','http://60.28.183.11/NginxStatus/'));
+		monitor3.addUnit(new Apollo.monitor.Unit('i2','http://60.28.183.12/NginxStatus/'));
+		*/
+	})
+
+</script>
+</head>
+<body>
+<div style="height:1000px;display:none">
+
+
+	<a href="http://stat.lm.17k.com/rd?_u=aHR0cDovL2Jvb2suMTdrLmNvbQ==&_t=1230003999&_f=0&p=21&a=1444&m=2626&ft=1&_s=692e3cefea0e868a9cae521271fdd337">RDRDRDRD</a>
+	<div id="left">LEFT</div>
+	<div id="right">RIGHT</div>
+	<div style="clear:both"></div>
+	<script src="http://cd.u.17k.com/s3.js?ps=461></script>
+</div>
+<h1>网盟服务器HTTP状态监控</h1>
+<a href="javascript://">添加新组</a>
+<script src=http://cd.u.17k.com/s.js?m=1001&y=100&w=950&h=60></script>
+</body>
+</html>

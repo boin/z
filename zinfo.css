@@ -1,0 +1,44 @@
+@charset "utf-8";
+#addwapper {
+	position: absolute;
+	width:200px;
+	border: 1px solid grey;
+	z-index:20001;
+	height:200px;
+	background:#fff;
+	margin:5px 5px;
+}
+body {
+	margin:0;
+}
+
+iframe {
+	border: none;
+	overflow: hidden;
+	display: block;
+	width: 100%;
+}
+
+.group{
+	clear: both;
+	margin-top: 3px
+}
+
+.unit{
+	width: 33%;
+	float: left;
+	border: dotted 1px #ccc;
+	margin-left: 2px
+}
+
+.unit h3{
+	display: inline;
+}
+
+.apache {
+	height: 320px;
+}
+
+.nginx {
+	height: 120px;
+}

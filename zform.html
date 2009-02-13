@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=uft-8" />
+<title>表单</title>
+<script type="text/javascript" src="jquery-1.2.6.js"></script>
+<script type="text/javascript" src="zform.js"></script>
+<script type="text/javascript" src="test.js">
+</script>
+</head>
+<body>
+	<div id="summary" class="summary"></div>
+	<form id="demo" method="get" action="t.php" onsubmit="return false">
+		<fieldset>
+			<legend>
+				表单验证
+			</legend>
+			<dl>
+				<dt>
+					<label for="UserName">注册用户名：</label>
+				</dt>
+				<dd>
+					<input id="UserName" name="UserName" type="text" v_alue="管理员" />
+				</dd>
+			</dl>
+			<dl style="height:58px">
+				<dt>
+					<label for="Password">密码：</label>
+				</dt>
+				<dd>
+					<input id="Password" name="Password" type="text" v_alue="abcdEfG123" />
+					<div id="passwordInfo"></div>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>性别：</label>
+				</dt>
+				<dd>
+					男<input name="Sex" type="radio" value="male" />
+					女<input name="Sex" type="radio" value="female" />
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="Photo">相片上传：</label>
+				</dt>
+				<dd>
+					<input id="Photo" name="Photo" type="file" style="height:20px;vertical-align:1px;_vertical-align:0" /></dd>
+			</dl>
+
+			<dl>
+				<dt>
+					您的爱好：
+				</dt>
+				<dd>
+					<label><input type="checkbox" name="Fav" value="1" />足球</label>
+					<label><input type="checkbox" name="Fav" value="2" />篮球</label>
+					<label><input type="checkbox" name="Fav" value="3" />网球</label>
+					<label><input type="checkbox" name="Fav" value="4" />台球</label>
+				</dd>
+			</dl>
+			<dl style="height:75px">
+				<dt>
+					您的特长：
+				</dt>
+				<dd>
+					<select size="4" multiple="multiple" name="Good" id="Good">
+						<option value="1">足球</option>
+						<option value="2">篮球</option>
+						<option value="3">网球</option>
+						<option value="4">台球</option>
+					</select>
+				</dd>
+			</dl>
+			<dl style="height:58px">
+				<dt>
+					<label for="message">留言:</label>
+				</dt>
+				<dd>
+					<textarea id="Message" name="Message"></textarea>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					操作：
+				</dt>
+				<dd>
+					<input type="hidden" name="id"/>
+					<input type="hidden" name="action"/>
+					<input name="Submit" type="submit" value="确定提交" />
+					<button onclick="$(this.form).bindData(getData(1));return false">Bind 1</button>
+					<button onclick="$.bindData(this.form, getData(2));return false">Bind 2</button>
+				</dd>
+			</dl>
+		</fieldset>
+	</form>
+</body>
+</html>
