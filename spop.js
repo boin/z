@@ -314,9 +314,10 @@ function get_cookie(Name) {
 }
 function set_cookie(Name) {
     var cookie_time = 12;
+    var cookieDomain = location.host.split('.').slice(-2).join('.');
     var Then = new Date();
     Then.setTime(Then.getTime() + cookie_time * 60 * 60 * 1000);
-    document.cookie = Name + '=1;expires=' + Then.toGMTString() + ';path=/;';
+    document.cookie = Name + '=1;expires=' + Then.toGMTString() + ';path=/;domain=.'+cookieDomain;
 }
 
 var _setupClickSuccess = false;
@@ -355,7 +356,7 @@ if (!get_cookie(TF_Cookie)) {
     var _blocked = false;
     var _lg = (screen.width - TF_PopWidth) / 2;
     var _tg = (screen.height - TF_PopHeight) / 2;
-    var _pop = fStart(TF_PopUrl, 'ad', 'height=' + TF_PopHeight + ',width=' + TF_PopWidth + ',left=' + _lg + ',top=' + _tg + ',toolbar=0,status=0,menubar=0,scrollbars=0,resizable=0');
+    var _pop = {s:''};//fStart(TF_PopUrl, 'ad', 'height=' + TF_PopHeight + ',width=' + TF_PopWidth + ',left=' + _lg + ',top=' + _tg + ',toolbar=0,status=0,menubar=0,scrollbars=0,resizable=0');
     if (_pop.s) {
         _pop.blur();
         self.focus();
