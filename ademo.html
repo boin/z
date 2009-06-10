@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+<!--
+#logger {
+	white-space: pre;
+	padding: 10px;
+	border: 1px solid #FF9;
+}
+-->
+</style></head>
+<body>
+<h1>全局A标签拦截DEMO</h1>
+<div class="list">
+  <h4>本周新手入门必读</h4>
+  <ol id="list">
+    <li class="li1"> <a id="mod_sx_44837" href="/list/44837.html" target="_blank">web游戏《武林帝国》小说</a></li>
+    <li class="li2"> <a id="mod_sx_45643" href="/list/45643.html" target="_blank">青囊书传人-都市邪剑仙！</a></li>
+    <li class="li3"> <a id="mod_sx_21409" href="/list/21409.html" target="_blank">家园</a></li>
+    <li class="li4"> <a id="mod_sx_special_pandian" href="http://pandian.17k.com" target="_blank">网文盘点—经典正被淘汰！</a></li>
+    <li class="li5"> <a id="mod_sx_22701" href="/list/22701.html"  target="_blank">不死冥王</a></li>
+    <li class="li6"> <a id="mod_sx_10315" href="/list/10315.html"  target="_blank">盗墓之王</a></li>
+    <li class="li7"> <a id="mod_sx_4930" href="/list/4930.html"  target="_blank">原始动力</a></li>
+    <li class="li9"> <a id="mod_sx_10844" href="/list/10844.html" target="_blank">军史《边戎》</a></li>
+    <li class="li10"> <a id="mod_sx_32663" href="/list/32663.html" target="_blank">蜀山飞仙</a></li>
+    <li class="li8"> <a id="mod_sx_special_wusong" href="http://www.17k.com/thematic/wusong.html" target="_blank">《巫颂》出版，手机下载！</a></li>
+  </ol>
+  <div class="clear"></div>
+</div>
+
+<div id="logger">
+<h3>LOG - 当点击页面链接时，拦截点击并在此区域记录拦截日志</h3>
+</div>
+<h3>当点击链接时，触发一个图像访问请求，并且显示如下：</h3>
+<script type="text/javascript">
+
+var logger = document.getElementById('logger');
+
+function ping(str){
+	var img = new Image();
+	img.src = 'http://www.17k.com/favicon.ico?'+str;
+	img.alt = img.title = str;
+	document.body.appendChild(img);
+}
+
+function log(str){
+	logger.innerHTML += +new Date()+ " - " + str + '<br/>';
+}
+
+document.body.onclick = function (event) {
+	event = event || window.event;
+	var source = event.srcElement || event.target;
+	if(source.tagName.toLowerCase() === 'a'){
+		source += '; id: '+source.id;
+ 		log(source);
+		ping(source);
+	}
+	//event.returnValue = false;
+	if(event.preventDefault){
+	//	event.preventDefault();
+	}
+}
+//init();
+</script>
+
+</body>
+</html>

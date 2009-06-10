@@ -1,8 +1,9 @@
 /**
  * jquery.zform.js
  * @author Boin
- * @version 0.1
+ * @version 0.2
  */
+
 (function($){
 	$.debug = function(){
 		if(!$.debugMode)return;
@@ -55,15 +56,15 @@
    * we've hacked jQuery's httpData() function to get chance for Ajax option dataFilter() to handle HttpResponse
    */
 	//$._httpData = $.httpData;
-	$.httpData = function( xhr, type, filter){
+	$.httpData = function( xhr, type, s){
 		var ct = xhr.getResponseHeader("content-type"),
 			xml = type == "xml" || !type && ct && ct.indexOf("xml") >= 0,
 			data = xml ? xhr.responseXML : xhr.responseText;
 		if ( xml && data.documentElement.tagName == "parsererror" )
 			throw "parsererror";
 		// Allow a pre-filtering function to sanitize the response
-		if( filter )
-			data = filter( data, type, xhr );
+		if( s && s.dataFilter )
+			data = s.dataFilter( data, type, xhr );
 		// If the type is "script", eval it in global context
 		if ( type == "script" )
 			jQuery.globalEval( data );
@@ -96,6 +97,7 @@
 		  global: false,
 		  dataType: options.dataType || null,
 		  dataFilter: function(data, type, xhr){
+		  	$.debug(xhr.getAllResponseHeaders());
 		  	var info = $.evalJSON(xhr.getResponseHeader('X-JSON')), o={};
 		  	o.info = info;
 		  	o.data = $.isFunction(options.dataFilter) ? options.dataFilter(data, type, xhr) : data;
@@ -116,10 +118,6 @@
 			  this; // 调用本次AJAX请求时传递的options参数
 			  target.html('Error: httpstatus:'+ st + '. msg:' + error + '.');
 			  if(options.lock)$(':submit', f).val($(':submit', f).attr('title')).attr('disabled', !options.lock);
-			},
-			complete: function(xhr, data, e) {
-				var header = xhr.getAllResponseHeaders();
-				debugger;
 			}
 		});
 	}
@@ -140,10 +138,20 @@ jQuery(function($){
 	forms.bind('submit', function(event){
 		//debugger;
 		var f = $(this), fn = function(){return true}, fname = f.attr('name') || f.attr('id'), ret=false;
-		try{fn = eval(fname_+'submit')}catch(e){$.debug('Form "'+ fname +'" dose not have a validator?','warn')};
+		try{fn = eval(fname+'_submit')}catch(e){$.debug('Form "'+ fname +'" dose not have a validator?','warn')};
 		if(fn.apply(this)){
-			f.asyncSubmit();
+			f.asyncSubmit(function(data){
+				if(data && data.info){
+					$('#async-message').text(data.info.msg);
+					if(data.info.url){
+						var time = data.info.second || 0;
+						setTimeout('location.href="'+data.info.url+'"', time * 1000);
+					}
+				}
+				try{eval(fname+'_success()')}catch(e){$.debug('Form "'+ fname +'" dose not have a success func?','warn')};
+			});
 		}
+		event.preventDefault();
 		return ret;
 	});
 });

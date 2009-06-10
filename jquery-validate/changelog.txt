@@ -1,3 +1,11 @@
+1.5.1
+---
+* Updated marketo demo to use invalidHandler option instead of binding invalid-form event
+* Added TinyMCE integration example
+* Added ukrainian (ua) localization
+* Fixed length validation to work with trimmed value (regression from 1.5 where general trimming before validation was removed)
+* Various small fixes for compability with both 1.2.6 and 1.3
+
 1.5
 ---
 * Improved basic demo, validating confirm-password field after password changed
